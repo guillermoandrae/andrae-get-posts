@@ -3,9 +3,9 @@ Description: ''
 Resources:
   MyFunction:
     Properties:
-      CodeUri: s3://andrae-get-posts/db892e6c057c2d85672f9f0b727323c9
+      CodeUri: s3://andrae-get-posts/f35fb18f8ccbb419fd9dbec452b7af32
       Description: ''
-      FunctionName: my-function
+      FunctionName: andrae-get-posts
       Handler: index.php
       Layers:
       - arn:aws:lambda:us-east-1:209497400698:layer:php-73:4
