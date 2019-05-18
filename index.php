@@ -1,7 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
 require __DIR__.'/vendor/autoload.php';
 
 lambda(function (array $event) {
-    return 'Hello ' . ($event['name'] ?? 'world');
+    return getJson('Hello ' . ($event['name'] ?? 'world'));
 });

@@ -11,6 +11,9 @@
     "require": {
         "mnapoli/bref": "^0.3.9"
     },
+    "autoload": {
+        "files": ["src/helpers.php"]
+    },
     "scripts": {
         "package": [
             "sam package --output-template-file .stack.yaml --s3-bucket andrae-get-posts"
