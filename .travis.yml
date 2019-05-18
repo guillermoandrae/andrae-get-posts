@@ -7,10 +7,11 @@ install:
   - pip install --user aws-sam-cli
 script:
   - composer install --optimize-autoloader --no-dev
-  - composer package
+  - sam package --output-template-file .stack.yaml --s3-bucket andrae-get-posts
 deploy:
   provider: script
-  script: composer deploy
+  script:
+    - sam deploy --template-file .stack.yaml --capabilities CAPABILITY_IAM --stack-name andrae-get-posts
   skip_cleanup: true
   on:
     repo: guillermoandrae/andrae-get-posts
