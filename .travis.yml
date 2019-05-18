@@ -1,6 +1,6 @@
 language: generic
 before_install:
-  - phpenv global 7.2
+  - phpenv global 7.1.11
 install:
   - pip install --user awscli
   - pip install --user aws-sam-cli
