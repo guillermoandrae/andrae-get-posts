@@ -1,7 +1,7 @@
 language: generic
 install:
-  - pip install awscli
-  - pip install aws-sam-cli
+  - pip --user install awscli
+  - pip --user install aws-sam-cli
 script:
   - composer install --optimize-autoloader --no-dev
   - composer package
