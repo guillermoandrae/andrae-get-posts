@@ -1,6 +1,6 @@
 language: generic
-python: 2.7.14
-php: 7.1.11
+php: 
+  - 7.1
 install:
 - pip install --user awscli
 - pip install --user aws-sam-cli
