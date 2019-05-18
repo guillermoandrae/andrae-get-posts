@@ -6,7 +6,7 @@ Resources:
     MyFunction:
         Type: AWS::Serverless::Function
         Properties:
-            FunctionName: 'my-function'
+            FunctionName: 'andrae-get-posts'
             Description: ''
             CodeUri: .
             Handler: index.php
