@@ -1,12 +1,12 @@
 language: generic
-php: 
-  - 7.1
+before_install:
+  - phpenv global 7.1.11 
 install:
-- pip install --user awscli
-- pip install --user aws-sam-cli
+  - pip install --user awscli
+  - pip install --user aws-sam-cli
 script:
-- composer install --optimize-autoloader --no-dev
-- composer package
+  - composer install --optimize-autoloader --no-dev
+  - composer package
 deploy:
   provider: script
   script: composer deploy
