@@ -1,4 +1,13 @@
 {
+    "name": "guillermoandrae/andrae-get-posts",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guillermo A. Fisher",
+            "email": "me@guillermoandraefisher.com"
+        }
+    ],    
     "require": {
         "mnapoli/bref": "^0.3.9"
     },
