@@ -1,22 +1,23 @@
 language: generic
 dist: xenial
 before_install:
-  - phpenv global 7.2.15
+- phpenv global 7.2.15
 install:
-  - pip install --user awscli
-  - pip install --user aws-sam-cli
+- pip install --user awscli
+- pip install --user aws-sam-cli
 script:
-  - composer install --optimize-autoloader --no-dev
-  - sam package --output-template-file .stack.yaml --s3-bucket andrae-get-posts
+- composer install --optimize-autoloader --no-dev
+- sam package --output-template-file .stack.yaml --s3-bucket andrae-get-posts
 deploy:
   provider: script
   script:
-    - sam deploy --template-file .stack.yaml --capabilities CAPABILITY_IAM --stack-name andrae-get-posts
+  - sam deploy --template-file .stack.yaml --capabilities CAPABILITY_IAM --stack-name
+    andrae-get-posts
   skip_cleanup: true
   on:
     repo: guillermoandrae/andrae-get-posts
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-1
-  - secure: Kz5C2NLlzAKQTsKuOlMXRU7Cf7qKK1ZlPoFyvN4o6rzD8pknhEakPdDZj1L0h4I3H8Oy+p8neQYXfk8snwJEFp8oiQICj8PtM6jxK+jFVdR2UCM9MPpOHFEAhpwKoQHDYmsAvs2ct5K40qdwYJT3UMOPgeNGSkn3nvB1qSdCCb88AuDYuTFHs8u06a7j4qg1FNf8ruaeGxLeHkARx3M09GtyUEXevx6Y5xMdgSzAwbD4sLsqNcW7S63OpXfKHbCIiydUMrVD43X5zf5BHe94L6rXGs7+M3mvOGAhb24nuGmqdYuLnh40kELJkAUvXfxOTFtkPTQReX6t3lPyhePgFvEpKf9J6K7Pdu7N8k2oJPjbPr+VOHnv7klRnJuESfYgKXKeZXMIJuu2CASJIQX6QZyybZZ5j6Cu7SaDlgi8D5WDslzYJf3IQJmFWjbjzm/tnEcG933GfDEUi7kUSOh4BgMOq7Q9m2H948VbHEd6yIDp9qypJ1SpEezm7GGXg3zqhRGeaFchQbxSp2CXtRgI7O0xk7d1JaNbVsvadhQztCUQttof2rpr5MLxEOfvh0zMVFXjEnBwYQbXe9Wy60LD1zlDJVpYZ0H10mGuqn6Hh0Ndp613vRg4fvnFS6N1z+tpeq29oKXmN8BONrR97VhYva5KHruUBHSX6bZxKDyLZaw=
-  - secure: RW85nyjlpnIJe+tDbvy9ym7WhEJGetlSx2JlbfCNwXvOX9eN9V+cAi541FoY9xBy6H7qw77VhPOIJydoCAMbGA/gf4PEtm3kyL8y9DoT+16pRn690Kylo49kG5rhE/OhGoQy/IhUDUWUr/y9q26JkCPQ6lbPR6CnVZ5nohNvK8Je5REiJWmcBAywPyPbGvYlk9BMGusAqyF3nHyg/10V1iC/zGNaEhOjwODv3PypVPh82U5D2fNKRiasFwWfLlEMhKOTz7dfXSmyRj1IgfYgDpWnbbVunEz9j8XEMGO/eZeODAv1sZkIXzpQy3OcgG7lDidz081VKn1WhG1zYzVGH3fUEu8Y6EXRDtEMAfhFVvI6jdJOGNl1K8S2RBsGBSdCCXCFGPtaYFdFC/G9ldrtB/dHAYEs9ysi0106is6NsKhxBwe9J7voxV7mXJJ+i+UdBmdQwMlPG3dKfiZT4S39GZrmVM79CfUibKWBtLNRIo3zZiTlMBuEwPsXgi9b0gWq49xeP2Qi1Vll6tAp6ylR6FOrGmxKoal+PjiHRWP1F97nspQNWQqIT1jKuHQxIrLcKqfMrErhhq2qoJXf8anlbNAUI93BjutMQM8g+fJsnaubhvV7HuynOHtBzeuIsDK50Lgb6rDtZaD/JLnws/uMNx9jn6ol7RMtq0YSxj3aloY=
+  - secure: qk7iWOw2tVjk3ciw0ohNg7MbX2687zr20nk3rMrDNdvMnyIk2r/sApZy15CQl2lYlu+2l42ZXAOUCLH05QvtkmbP94CueA4nkmlmstMjCKEFJR+lNH/9GNjaoh6TTY1uODSH7gjaiIK8w3+mNDgA0WRTff/XrJr2U9Tnak78NX1fFUmrvFt3Gtfk36BXUAOGNwqw+chHLvCQnHJOY1yMFQT84bz4ee2Qhewu2cO03iDCO5pwuZ3wuL7w1rjyvnllnzdLZrGPLlzBDRYAuUKtaQW9QYI3KPw0pKxiX++umMDw+DkYEwB85XaidGTI2qq7oUQj44YPAcikz7TeaC+b4p3MmnokfCirPnSdb2hKwxNcGhHEnIneawBxz25XIFVhztH7+RinyiDRNDBwTlt7CNbMe9/9nd5sGNRIhbjjc+BrojsqljaM+Yj1hftSZaeJ0zzhLYa2/ovkdlG1hlOW75euSNhq/fgIK4e+iESBEHBlJfiVynjOsrlP/v8oLmfB9xojCMzV9oaqzuiTyMYe4CEc27j33RMFgtECYqqVrTpq3p02af+6a2ybYt7raZhJ/6pXvFsINWJ9b2YN54v/59NrEm+P2tjhs4fT3UnEHZzQiSFWR0kzoWtATVZJj9gi3zLylOEFYnIyFK9ZjGG/jXsNggX0C35jdq50xs+usBw=
+  - secure: rSWWTT2SBeZgQ0sU9U7fi/iRlQuDY83FMwhz5yIWwdnceB8RlEyg/XoQHpq3ZKRfYVaWqL9zjI+WnHzXt/pvhu5VX1Rocsln4YwZ9RKXHVjFPDawLGYB+dJTtJlZs9RdcqHmwVgq/zVlLmRDCnN6dV2UD2/msBe+4yaGwPCp3gqmnqNj+TcTGDI0r6U0qPfQkxiIsXVzQ/UQLFNOFnw36+nEOJsCbTQaURbvj7wrM/8g6TaE6TIRsXGalOoB8702vb3MI6byiHO1s30di+Bj7lgJkq3sxapg5zZyeE3o9fRAKLC/prlyQn37UHuEFVcaFsac/j7tmWk+nce6uBiDphia6MtDgx6Cu5tP/2BW+vZOrrXwi2KdVJmbuSwlX60dnh2pFDjF3tLYUrzULxeTfhfmdwYQURcxNX/dJtPzbAVTsgjo1eXnsqwj/Ktrues6oNEAlBd6d1E2tb3VS6HibW0d5hyro5YbQpAESpgVLsVUQ2Kp+R7/rfUZKLs6aPvG1RVqhIl+wSfuMc1Tr1YYvB/fm0beCQ3c/NL8OJtguwC/HmPNYXEbt1TnMZFVP/fyYQHCPV1lFGRUtOZ+V2RhkQH7mqtG7QkSlvawL2TxJp/CncfZNq3jRM0tLN7TpcOyTIE78gXecqsqW6GQuv45Qd86aMW2amc5HDMBPEO1fV0=
