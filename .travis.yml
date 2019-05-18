@@ -1,23 +1,21 @@
 language: generic
 dist: xenial
 before_install:
-- phpenv global 7.2.15
+  - phpenv global 7.2.15
 install:
-- pip install --user awscli
-- pip install --user aws-sam-cli
+  - pip install --user awscli
+  - pip install --user aws-sam-cli
 script:
-- composer install --optimize-autoloader --no-dev
-- sam package --output-template-file .stack.yaml --s3-bucket andrae-get-posts
+  - composer install --optimize-autoloader --no-dev
+  - composer package
 deploy:
   provider: script
-  script:
-  - sam deploy --template-file .stack.yaml --capabilities CAPABILITY_IAM --stack-name
-    andrae-get-posts
+  script: composer deploy
   skip_cleanup: true
   on:
     repo: guillermoandrae/andrae-get-posts
 env:
   global:
-  - AWS_DEFAULT_REGION=us-east-1
-  - secure: qk7iWOw2tVjk3ciw0ohNg7MbX2687zr20nk3rMrDNdvMnyIk2r/sApZy15CQl2lYlu+2l42ZXAOUCLH05QvtkmbP94CueA4nkmlmstMjCKEFJR+lNH/9GNjaoh6TTY1uODSH7gjaiIK8w3+mNDgA0WRTff/XrJr2U9Tnak78NX1fFUmrvFt3Gtfk36BXUAOGNwqw+chHLvCQnHJOY1yMFQT84bz4ee2Qhewu2cO03iDCO5pwuZ3wuL7w1rjyvnllnzdLZrGPLlzBDRYAuUKtaQW9QYI3KPw0pKxiX++umMDw+DkYEwB85XaidGTI2qq7oUQj44YPAcikz7TeaC+b4p3MmnokfCirPnSdb2hKwxNcGhHEnIneawBxz25XIFVhztH7+RinyiDRNDBwTlt7CNbMe9/9nd5sGNRIhbjjc+BrojsqljaM+Yj1hftSZaeJ0zzhLYa2/ovkdlG1hlOW75euSNhq/fgIK4e+iESBEHBlJfiVynjOsrlP/v8oLmfB9xojCMzV9oaqzuiTyMYe4CEc27j33RMFgtECYqqVrTpq3p02af+6a2ybYt7raZhJ/6pXvFsINWJ9b2YN54v/59NrEm+P2tjhs4fT3UnEHZzQiSFWR0kzoWtATVZJj9gi3zLylOEFYnIyFK9ZjGG/jXsNggX0C35jdq50xs+usBw=
-  - secure: rSWWTT2SBeZgQ0sU9U7fi/iRlQuDY83FMwhz5yIWwdnceB8RlEyg/XoQHpq3ZKRfYVaWqL9zjI+WnHzXt/pvhu5VX1Rocsln4YwZ9RKXHVjFPDawLGYB+dJTtJlZs9RdcqHmwVgq/zVlLmRDCnN6dV2UD2/msBe+4yaGwPCp3gqmnqNj+TcTGDI0r6U0qPfQkxiIsXVzQ/UQLFNOFnw36+nEOJsCbTQaURbvj7wrM/8g6TaE6TIRsXGalOoB8702vb3MI6byiHO1s30di+Bj7lgJkq3sxapg5zZyeE3o9fRAKLC/prlyQn37UHuEFVcaFsac/j7tmWk+nce6uBiDphia6MtDgx6Cu5tP/2BW+vZOrrXwi2KdVJmbuSwlX60dnh2pFDjF3tLYUrzULxeTfhfmdwYQURcxNX/dJtPzbAVTsgjo1eXnsqwj/Ktrues6oNEAlBd6d1E2tb3VS6HibW0d5hyro5YbQpAESpgVLsVUQ2Kp+R7/rfUZKLs6aPvG1RVqhIl+wSfuMc1Tr1YYvB/fm0beCQ3c/NL8OJtguwC/HmPNYXEbt1TnMZFVP/fyYQHCPV1lFGRUtOZ+V2RhkQH7mqtG7QkSlvawL2TxJp/CncfZNq3jRM0tLN7TpcOyTIE78gXecqsqW6GQuv45Qd86aMW2amc5HDMBPEO1fV0=
+    - AWS_DEFAULT_REGION=us-east-1
+    - secure: qk7iWOw2tVjk3ciw0ohNg7MbX2687zr20nk3rMrDNdvMnyIk2r/sApZy15CQl2lYlu+2l42ZXAOUCLH05QvtkmbP94CueA4nkmlmstMjCKEFJR+lNH/9GNjaoh6TTY1uODSH7gjaiIK8w3+mNDgA0WRTff/XrJr2U9Tnak78NX1fFUmrvFt3Gtfk36BXUAOGNwqw+chHLvCQnHJOY1yMFQT84bz4ee2Qhewu2cO03iDCO5pwuZ3wuL7w1rjyvnllnzdLZrGPLlzBDRYAuUKtaQW9QYI3KPw0pKxiX++umMDw+DkYEwB85XaidGTI2qq7oUQj44YPAcikz7TeaC+b4p3MmnokfCirPnSdb2hKwxNcGhHEnIneawBxz25XIFVhztH7+RinyiDRNDBwTlt7CNbMe9/9nd5sGNRIhbjjc+BrojsqljaM+Yj1hftSZaeJ0zzhLYa2/ovkdlG1hlOW75euSNhq/fgIK4e+iESBEHBlJfiVynjOsrlP/v8oLmfB9xojCMzV9oaqzuiTyMYe4CEc27j33RMFgtECYqqVrTpq3p02af+6a2ybYt7raZhJ/6pXvFsINWJ9b2YN54v/59NrEm+P2tjhs4fT3UnEHZzQiSFWR0kzoWtATVZJj9gi3zLylOEFYnIyFK9ZjGG/jXsNggX0C35jdq50xs+usBw=
+    - secure: rSWWTT2SBeZgQ0sU9U7fi/iRlQuDY83FMwhz5yIWwdnceB8RlEyg/XoQHpq3ZKRfYVaWqL9zjI+WnHzXt/pvhu5VX1Rocsln4YwZ9RKXHVjFPDawLGYB+dJTtJlZs9RdcqHmwVgq/zVlLmRDCnN6dV2UD2/msBe+4yaGwPCp3gqmnqNj+TcTGDI0r6U0qPfQkxiIsXVzQ/UQLFNOFnw36+nEOJsCbTQaURbvj7wrM/8g6TaE6TIRsXGalOoB8702vb3MI6byiHO1s30di+Bj7lgJkq3sxapg5zZyeE3o9fRAKLC/prlyQn37UHuEFVcaFsac/j7tmWk+nce6uBiDphia6MtDgx6Cu5tP/2BW+vZOrrXwi2KdVJmbuSwlX60dnh2pFDjF3tLYUrzULxeTfhfmdwYQURcxNX/dJtPzbAVTsgjo1eXnsqwj/Ktrues6oNEAlBd6d1E2tb3VS6HibW0d5hyro5YbQpAESpgVLsVUQ2Kp+R7/rfUZKLs6aPvG1RVqhIl+wSfuMc1Tr1YYvB/fm0beCQ3c/NL8OJtguwC/HmPNYXEbt1TnMZFVP/fyYQHCPV1lFGRUtOZ+V2RhkQH7mqtG7QkSlvawL2TxJp/CncfZNq3jRM0tLN7TpcOyTIE78gXecqsqW6GQuv45Qd86aMW2amc5HDMBPEO1fV0=
