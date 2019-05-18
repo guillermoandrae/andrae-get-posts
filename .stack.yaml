@@ -3,7 +3,7 @@ Description: ''
 Resources:
   MyFunction:
     Properties:
-      CodeUri: s3://andrae-get-posts/f35fb18f8ccbb419fd9dbec452b7af32
+      CodeUri: s3://andrae-get-posts/daf6cd909504a3295f9da8f53814ffb3
       Description: ''
       FunctionName: andrae-get-posts
       Handler: index.php
